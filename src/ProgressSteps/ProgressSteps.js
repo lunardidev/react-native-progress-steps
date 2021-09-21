@@ -8,6 +8,7 @@ class ProgressSteps extends Component {
   state = {
     stepCount: 0,
     activeStep: this.props.activeStep,
+    
   };
 
   componentDidMount() {
@@ -54,6 +55,14 @@ class ProgressSteps extends Component {
 
   // Callback function from ProgressStep that passes current step.
   setActiveStep = (step) => {
+
+    if(step >= 3){
+      const scrollToNewPosition = 100 * step;
+      this.scroller.scrollTo({x: scrollToNewPosition, y: 0});
+    } else{
+      this.scroller.scrollTo({x: 0, y: 0});
+    }
+
     // Guard against setting current step higher than total step count.
     if (step >= this.state.stepCount - 1) {
       this.setState({ activeStep: this.state.stepCount - 1 });
@@ -78,9 +87,11 @@ class ProgressSteps extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.stepIcons}>
-          <ScrollView horizontal={true}>
-            {this.renderStepIcons()}
+        <View>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} ref={(scroller) => {this.scroller = scroller}}>
+            <View style={styles.stepIcons}>
+              {this.renderStepIcons()}
+            </View>
           </ScrollView>
         </View>
         <View style={{ flex: 1 }}>
