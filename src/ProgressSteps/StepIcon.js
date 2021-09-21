@@ -14,12 +14,12 @@ class StepIcon extends Component {
           borderRadius: 20,
           backgroundColor: this.props.activeStepIconColor,
           borderColor: this.props.activeStepIconBorderColor,
-          borderWidth: 5,
+          borderWidth: 0,
           bottom: 2,
         },
         circleText: {
           alignSelf: 'center',
-          top: 20 / 3,
+          top: 20 / 2,
         },
         labelText: {
           textAlign: 'center',
